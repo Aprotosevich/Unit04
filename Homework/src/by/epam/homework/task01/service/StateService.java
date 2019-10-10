@@ -33,10 +33,15 @@ public class StateService {
     }
 
     public City findCityByName(State state, String name) {
-        return (City) state.regionsList.stream()
-                .map(n -> n.areaList.stream()
-                        .map(t -> t.cityList.stream()
-                                .filter(city -> city.getName().equals(name)))).findAny().get();
+        return state.regionsList
+                .stream()
+                .flatMap(region -> region.areaList
+                        .stream()
+                        .flatMap(area -> area.cityList
+                                .stream()
+                                .filter(city -> city.getName().equals(name))))
+                .findAny()
+                .get();
     }
 
 }
