@@ -6,6 +6,7 @@ import java.util.List;
 public class Region {
 
     public List<Area> areaList = new ArrayList<>();
+    public City regionCenter;
 
     private String name;
     private long size;

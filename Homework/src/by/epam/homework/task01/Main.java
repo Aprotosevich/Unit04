@@ -10,6 +10,7 @@ import by.epam.homework.task01.entity.City;
 import by.epam.homework.task01.entity.Region;
 import by.epam.homework.task01.entity.State;
 import by.epam.homework.task01.service.AreaService;
+import by.epam.homework.task01.service.CityService;
 import by.epam.homework.task01.service.RegionService;
 import by.epam.homework.task01.service.StateService;
 
@@ -18,12 +19,22 @@ public class Main {
         Main main = new Main();
         State belarus = main.createBelarusCountry();
         StateService stateService = new StateService();
-        System.out.println(belarus.getName());
 
-        System.out.println(belarus.getSize()); // площадь
+        System.out.println("Belarus size: " + belarus.getSize()); // площадь
 
-        System.out.println(stateService.findCityByName(belarus,"Minsk"));// столицу
+        String input = "Minsk";
+        City inputCity = stateService.takeCityByName(belarus, input);
+        if (inputCity != null) {
+            System.out.println("Minsk is capital: " + inputCity.isCapital());
+            System.out.println("Belarus capital: " + belarus.getCapital());
+            stateService.installCapitalByName(belarus, input); // столицу
+            System.out.println("Belarus capital: " + belarus.getCapital());
+            System.out.println("Minsk is capital: " + inputCity.isCapital());
+        }
 
+        System.out.println("Regions number: " + belarus.regionsList.size()); // количество областей
+
+        System.out.println("Region centers : " + stateService.takeRegionCenters(belarus));
 
     }
 
@@ -62,7 +73,9 @@ public class Main {
         areaService.addCity(area5, new City("Minsk", 450)); // size must be == 1850
 
         stateService.installSize(state);
-
+        regionService.installRegionCenter(region, "Minsk");
+        regionService.installRegionCenter(region1, "Volkovisk");
+        regionService.installRegionCenter(region2, "Soligorsk");
         return state;
     }
 }

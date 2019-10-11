@@ -1,7 +1,10 @@
 package by.epam.homework.task01.service;
 
 import by.epam.homework.task01.entity.Area;
+import by.epam.homework.task01.entity.City;
 import by.epam.homework.task01.entity.Region;
+
+import java.util.NoSuchElementException;
 
 public class RegionService {
 
@@ -24,6 +27,24 @@ public class RegionService {
         }
 
         region.setSize(takeRegionSize(region));
+    }
+
+    public void installRegionCenter(Region region, String name) {
+        region.regionCenter = findCityByName(region, name);
+        findCityByName(region, name).setRegionCenter(true);
+    }
+
+    public City findCityByName(Region region, String name) {
+        try {
+            return region.areaList
+                    .stream()
+                    .flatMap(area -> area.cityList
+                            .stream().filter(city -> city.getName().equals(name)))
+                    .findAny()
+                    .get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 
 }

@@ -5,6 +5,7 @@ public class City {
     private String name;
     private boolean isCapital;
     private long size;
+    private boolean isRegionCenter;
 
     public City(String name, long areaSize) {
         this.name = name;
@@ -33,6 +34,14 @@ public class City {
 
     public void setSize(long size) {
         this.size = size;
+    }
+
+    public boolean isRegionCenter() {
+        return isRegionCenter;
+    }
+
+    public void setRegionCenter(boolean regionCenter) {
+        isRegionCenter = regionCenter;
     }
 
     @Override
