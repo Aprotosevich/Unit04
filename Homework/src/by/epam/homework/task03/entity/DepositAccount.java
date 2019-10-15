@@ -1,5 +1,7 @@
 package by.epam.homework.task03.entity;
 
+import java.util.Objects;
+
 public class DepositAccount extends AbstractAccount {
 
     private boolean revocable; // отзывной вклад или нет
@@ -41,4 +43,18 @@ public class DepositAccount extends AbstractAccount {
                 ", depositMonthRate: " + depositMonthRate + "%. ";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DepositAccount that = (DepositAccount) o;
+        return revocable == that.revocable &&
+                depositMonthRate == that.depositMonthRate;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), revocable, depositMonthRate);
+    }
 }

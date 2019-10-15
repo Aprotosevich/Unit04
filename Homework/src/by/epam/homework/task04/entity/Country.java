@@ -2,12 +2,12 @@ package by.epam.homework.task04.entity;
 
 public enum Country {
 
-    Turkey,
-    Egypt,
+    TURKEY,
+    EGYPT,
     USA,
-    Vietnam,
-    Thailand,
-    Spain,
-    Italy;
+    VIETMAN,
+    THAILAND,
+    SPAIN,
+    ITALY;
 
 }

@@ -13,4 +13,6 @@ public class SalaryAccount extends AbstractAccount {
         return "SalaryAccount. Id: " + account_id + ". Current amount: " + curr_amount + ". ";
     }
 
+
+
 }
