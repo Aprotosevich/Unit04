@@ -2,6 +2,7 @@ package by.epam.homework.task01.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class State {
 
@@ -37,5 +38,31 @@ public class State {
 
     public void setCapital(City capital) {
         this.capital = capital;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        State state = (State) o;
+        return size == state.size &&
+                Objects.equals(regionsList, state.regionsList) &&
+                Objects.equals(name, state.name) &&
+                Objects.equals(capital, state.capital);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(regionsList, name, size, capital);
+    }
+
+    @Override
+    public String toString() {
+        return "State{" +
+                "regionsList=" + regionsList +
+                ", name='" + name + '\'' +
+                ", size=" + size +
+                ", capital=" + capital +
+                '}';
     }
 }

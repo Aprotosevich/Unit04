@@ -1,5 +1,7 @@
 package by.epam.homework.task01.entity;
 
+import java.util.Objects;
+
 public class City {
 
     private String name;
@@ -51,5 +53,21 @@ public class City {
                 ", isCapital=" + isCapital +
                 ", size=" + size +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return isCapital == city.isCapital &&
+                size == city.size &&
+                isRegionCenter == city.isRegionCenter &&
+                Objects.equals(name, city.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, isCapital, size, isRegionCenter);
     }
 }
